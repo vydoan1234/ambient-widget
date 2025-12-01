@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ambient Mixer</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<h1>Ambient Mixer</h1>
+
+<!-- BIRD -->
+<div class="sound">
+  <label for="bird">Bird</label>
+  <input type="checkbox" id="bird">
+  <input type="range" id="birdVol" min="0" max="1" step="0.01" value="1" disabled>
+  <audio id="birdAudio" loop>
+    <source src="sounds/bird chipping.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<!-- OCEAN -->
+<div class="sound">
+  <label for="ocean">Ocean</label>
+  <input type="checkbox" id="ocean">
+  <input type="range" id="oceanVol" min="0" max="1" step="0.01" value="1" disabled>
+  <audio id="oceanAudio" loop>
+    <source src="sounds/ocean waves.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<!-- RAIN -->
+<div class="sound">
+  <label for="rain">Rain</label>
+  <input type="checkbox" id="rain">
+  <input type="range" id="rainVol" min="0" max="1" step="0.01" value="1" disabled>
+  <audio id="rainAudio" loop>
+    <source src="sounds/rain.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<!-- THUNDER -->
+<div class="sound">
+  <label for="thunder">Thunder</label>
+  <input type="checkbox" id="thunder">
+  <input type="range" id="thunderVol" min="0" max="1" step="0.01" value="1" disabled>
+  <audio id="thunderAudio" loop>
+    <source src="sounds/thunder.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<!-- STREAM -->
+<div class="sound">
+  <label for="stream">Stream</label>
+  <input type="checkbox" id="stream">
+  <input type="range" id="streamVol" min="0" max="1" step="0.01" value="1" disabled>
+  <audio id="streamAudio" loop>
+    <source src="sounds/water stream.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<!-- CAFE JAZZ -->
+<div class="sound">
+  <label for="cafeJazz">Cafe Jazz</label>
+  <input type="checkbox" id="cafeJazz">
+  <input type="range" id="cafeJazzVol" min="0" max="1" step="0.01" value="1" disabled>
+  <audio id="cafeJazzAudio" loop>
+    <source src="sounds/cafe jazz.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<!-- WHITE NOISE -->
+<div class="sound">
+  <label for="whiteNoise">White Noise</label>
+  <input type="checkbox" id="whiteNoise">
+  <input type="range" id="whiteNoiseVol" min="0" max="1" step="0.01" value="1" disabled>
+  <audio id="whiteNoiseAudio" loop>
+    <source src="sounds/white noise.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<!-- JUNGLE RAIN & BIRDS -->
+<div class="sound">
+  <label for="jungleRain">Rain & Birds</label>
+  <input type="checkbox" id="jungleRain">
+  <input type="range" id="jungleRainVol" min="0" max="1" step="0.01" value="1" disabled>
+  <audio id="jungleRainAudio" loop>
+    <source src="sounds/jungle rain & birds.wav" type="audio/mpeg">
+  </audio>
+</div>
+
+<script>
+const list = ["bird", "ocean", "rain", "thunder", "stream", "cafeJazz", "whiteNoise", "jungleRain"];
+
+list.forEach(name => {
+  const checkbox = document.getElementById(name);
+  const slider = document.getElementById(name + "Vol");
+  const audio  = document.getElementById(name + "Audio");
+
+  checkbox.addEventListener("change", () => {
+    if (checkbox.checked) {
+      audio.volume = slider.value;
+      audio.play();
+      slider.disabled = false;
+    } else {
+      audio.pause();
+      audio.currentTime = 0;
+      slider.disabled = true;
+    }
+  });
+
+  slider.addEventListener("input", () => {
+    audio.volume = slider.value;
+  });
+});
+</script>
+
+</body>
+</html>
